@@ -6,23 +6,16 @@ Builder.prototype.get = function () {
     return this.value;
 }
 
-// const instance = new Builder(10);
-
 function IntBuilder(value) {
     Builder.call(this, value);
+
+    if (value === undefined || value === null) {
+        this.value = 0;
+    }
 }
 
 IntBuilder.prototype = Object.create(Builder.prototype);
 IntBuilder.prototype.constructor = IntBuilder;
-
-/* IntBuilder.prototype.constructor = function () {
-    debugger;
-    if (this.value === null || this.value === undefined) {
-        this.value = 0;
-    }
-
-    Builder.prototype.constructor.call(this);
-} */
 
 IntBuilder.prototype.plus = function (...args) {
     let sum = 0;
@@ -35,7 +28,7 @@ IntBuilder.prototype.plus = function (...args) {
 
     this.value = result;
 
-    return this.value;
+    return this;
 }
 
 IntBuilder.prototype.minus = function (...args) {
@@ -49,7 +42,7 @@ IntBuilder.prototype.minus = function (...args) {
 
     this.value = result;
 
-    return this.value;
+    return this;
 }
 
 IntBuilder.prototype.multiply = function (param) {
@@ -57,7 +50,7 @@ IntBuilder.prototype.multiply = function (param) {
 
     this.value = result;
 
-    return this.value;
+    return this;
 }
 
 IntBuilder.prototype.divide = function (param) {
@@ -65,7 +58,7 @@ IntBuilder.prototype.divide = function (param) {
 
     this.value = result;
 
-    return this.value;
+    return this;
 }
 
 IntBuilder.prototype.mod = function (param) {
@@ -77,12 +70,24 @@ IntBuilder.prototype.mod = function (param) {
 
     this.value = result;
 
+    return this;
+}
+
+IntBuilder.random = function (from, to) {
+    const randomNum = from + Math.random() * (to + 1 - from);
+
+    this.value = Math.floor(randomNum);
+
     return this.value;
 }
 
 class StringBuilder extends Builder {
     constructor(value) {
         super(value);
+
+        if (value === undefined || value === null) {
+            this.value = '';
+        }
     }
 
     plus(...strings) {
@@ -96,7 +101,7 @@ class StringBuilder extends Builder {
 
         this.value = result;
 
-        return this.value;
+        return this;
     }
 
     minus(amount) {
@@ -104,7 +109,7 @@ class StringBuilder extends Builder {
 
         this.value = newString;
 
-        return this.value;
+        return this;
     }
 
     multiply(amount) {
@@ -114,7 +119,7 @@ class StringBuilder extends Builder {
 
         this.value = newString.trimRight();
 
-        return this.value;
+        return this;
     }
 
     divide(amount) {
@@ -124,22 +129,23 @@ class StringBuilder extends Builder {
 
         this.value = newString;
 
-        return this.value;
+        return this;
     }
 
     remove(str) {
         if (this.value.includes(str)) {
-            const startIdx = this.value.indexOf(str);
-            const endIdx = startIdx + str.length;
+            let newString = '';
 
-            const stringBeforeSub = this.value.slice(-this.value.length, startIdx);
-            const stringAfterSub = this.value.slice(endIdx, this.value.length);
+            const symbolsArr = this.value.split(str);
 
-            const newString = stringBeforeSub + stringAfterSub;
+
+            symbolsArr.forEach(el => {
+                newString += el;
+            })
 
             this.value = newString;
 
-            return this.value;
+            return this;
         } else {
             console.log(`No "${str}" substring found in stored string`);
         }
@@ -150,7 +156,7 @@ class StringBuilder extends Builder {
 
         this.value = newString;
 
-        return this.value;
+        return this;
     }
 }
 
