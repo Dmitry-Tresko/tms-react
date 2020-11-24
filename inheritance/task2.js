@@ -24,9 +24,7 @@ IntBuilder.prototype.plus = function (...args) {
         sum += arg;
     })
 
-    const result = this.value + sum;
-
-    this.value = result;
+    this.value += sum;
 
     return this;
 }
@@ -38,25 +36,20 @@ IntBuilder.prototype.minus = function (...args) {
         substract += arg;
     })
 
-    const result = this.value - substract;
-
-    this.value = result;
+    this.value -= substract;
 
     return this;
 }
 
 IntBuilder.prototype.multiply = function (param) {
-    const result = this.value * param;
+    this.value *= param;
 
-    this.value = result;
 
     return this;
 }
 
 IntBuilder.prototype.divide = function (param) {
-    const result = Math.floor(this.value / param);
-
-    this.value = result;
+    this.value = Math.floor(this.value / param);
 
     return this;
 }
@@ -66,19 +59,13 @@ IntBuilder.prototype.mod = function (param) {
 
     const resultWithRoundedValue = resultOfDivision * param;
 
-    const result = this.value - resultWithRoundedValue;
-
-    this.value = result;
+    this.value -= resultWithRoundedValue;
 
     return this;
 }
 
 IntBuilder.random = function (from, to) {
-    const randomNum = from + Math.random() * (to + 1 - from);
-
-    this.value = Math.floor(randomNum);
-
-    return this.value;
+    return Math.floor(from + Math.random() * (to + 1 - from));
 }
 
 class StringBuilder extends Builder {
@@ -97,17 +84,13 @@ class StringBuilder extends Builder {
             newString += strings[i] + '';
         }
 
-        const result = this.value + newString;
-
-        this.value = result;
+        this.value += newString;
 
         return this;
     }
 
     minus(amount) {
-        const newString = this.value.slice(-this.value.length, -amount);
-
-        this.value = newString;
+        this.value = this.value.slice(-this.value.length, -amount);
 
         return this;
     }
@@ -125,9 +108,7 @@ class StringBuilder extends Builder {
     divide(amount) {
         const k = Math.floor(this.value.length / amount);
 
-        const newString = this.value.slice(-this.value.length, k);
-
-        this.value = newString;
+        this.value = this.value.slice(-this.value.length, k);
 
         return this;
     }
@@ -137,7 +118,6 @@ class StringBuilder extends Builder {
             let newString = '';
 
             const symbolsArr = this.value.split(str);
-
 
             symbolsArr.forEach(el => {
                 newString += el;
@@ -152,9 +132,7 @@ class StringBuilder extends Builder {
     }
 
     sub(from, length) {
-        const newString = this.value.substr(from, length);
-
-        this.value = newString;
+        this.value = this.value.substr(from, length);
 
         return this;
     }
