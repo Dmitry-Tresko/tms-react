@@ -13,6 +13,14 @@ class DoubleLinkedList {
         this.tail = null;
     }
 
+    getHead() {
+        return this.head;
+    }
+
+    getTail() {
+        return this.tail;
+    }
+
     add(value) {
         if (!this.head) {
             const newNode = new Node(value);
@@ -93,7 +101,7 @@ class DoubleLinkedList {
         nextNode.previous = newNode;
 
         newNode.next = nextNode;
-        nextNode.previous = parentNode;
+        newNode.previous = parentNode;
 
         return this;
     }
