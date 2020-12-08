@@ -6,10 +6,6 @@
     box-sizing: border-box;
 }
 
-html {
-    font-family: "Texturina", serif;
-}
-
 .wrapper {
     display: flex;
     justify-content: center;
@@ -25,12 +21,12 @@ html {
     flex-direction: column;
     align-items: center;
 
-    width: 60%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
     border-radius: 10px;
     border: 4px solid white;
 
-    background: rgba(176, 224, 230, 0.9);
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(./weather_background.jpg) center center;
 }
 
 .input-container {
@@ -41,12 +37,13 @@ html {
 }
 
 .location-input {
-    width: 35%;
-    height: 35px;
+    width: 40%;
+    height: 45px;
 
     padding: 15px 0 15px 10px;
-    font-size: 1rem;
-    font-family: "Do Hyeon", sans-serif;
+    font-size: 15px;
+    font-family: "Varela Round", sans-serif;
+    font-weight: bold;
     border-radius: 10px;
     border: 3px solid rgba(65, 105, 225);
     background: whitesmoke;
@@ -55,8 +52,9 @@ html {
 .submit-btn {
     padding: 0 20px 0 20px;
 
-    font-size: 1rem;
-    font-family: "Do Hyeon", sans-serif;
+    font-size: 15px;
+    font-family: "Varela Round", sans-serif;
+    font-weight: bold;
     color: white;
     border-radius: 10px;
     border: 3px solid rgba(65, 105, 225);
@@ -73,16 +71,16 @@ html {
 }
 
 .weather-output {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     width: 70%;
     height: 72.5%;
 
-    font-family: "Do Hyeon", sans-serif;
+    font-family: "Varela Round", sans-serif;
     border-radius: 10px;
     border: 3px solid rgba(65, 105, 225);
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(./weather_background.png) center center;
+    background: rgba(255, 255, 255, 0.3);
 
     transition: all 0.5s;
 }
@@ -92,11 +90,51 @@ html {
     flex-direction: column;
     align-items: center;
 
-    width: 30%;
-    margin-top: 30px;
+    width: 100%;
+    margin-top: 25px;
 }
 
 .weather-temperature {
     color: yellow;
     font-size: 4rem;
+}
+
+.weather-location {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.additional-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 95%;
+    height: 50%;
+    margin-top: 35px;
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+
+    border-radius: 10px;
+    border: 3px solid rgba(65, 105, 225);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.additional-info--high {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 0 25px 0 25px;
+}
+
+.additional-info--low {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    padding: 0 25px 0 25px;
 }
