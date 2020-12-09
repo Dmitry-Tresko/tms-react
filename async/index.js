@@ -33,7 +33,7 @@ submitBtn.addEventListener('click', async event => {
 
     const response = await getWeather(cityInput.value);
 
-    if (response.success == false) {
+    if (!response.success) {
         alert(`City "${cityInput.value}" doesn't exist! Try again!`);
         return;
     }
