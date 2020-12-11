@@ -16,7 +16,7 @@ async function getWeather(city) {
     }
 }
 
-submitBtn.addEventListener('click', async event => {
+function showWeather(response) {
     const cityInput = document.getElementById('city-input');
     const countryInput = document.getElementById('country-input');
 
@@ -30,13 +30,6 @@ submitBtn.addEventListener('click', async event => {
     const windStr = document.querySelector('.weather-wind');
     const speedStr = document.querySelector('.weather-speed');
     const pressureStr = document.querySelector('.weather-pressure');
-
-    const response = await getWeather(cityInput.value);
-
-    if (!response.success) {
-        alert(`City "${cityInput.value}" doesn't exist! Try again!`);
-        return;
-    }
 
     if (!countryInput.value) countryInput.value = response.location.country;
 
@@ -64,4 +57,17 @@ submitBtn.addEventListener('click', async event => {
         console.log(cityInput.value);
         return;
     }
+}
+
+submitBtn.addEventListener('click', async event => {
+    const cityInput = document.getElementById('city-input');
+
+    const response = await getWeather(cityInput.value);
+
+    if (response.success === false) {
+        alert(`City "${cityInput.value}" doesn't exist! Try again!`);
+        return;
+    }
+
+    showWeather(response);
 })
